@@ -1,11 +1,23 @@
 
 const searchinput = document.querySelector('input[type="search"]');
 const searchbutton = document.querySelector('.input_wrapper>button');
+let infocard = document.querySelector('.info_card');
 
 let infocardlocation = document.querySelector('.info_card_left p:nth-child(1)');
 let infocarddescription = document.querySelector('.info_card_left p:nth-child(2)');
 let infocardtemp = document.querySelector('.info_card_left p:nth-child(3)');
 let infocardimg = document.querySelector('.info_card_right>img');
+
+
+let weatherpagelocation = document.querySelector('.weather_main header h3');
+let weatherpagedescription = document.querySelector('.panel_temp p:first-child');
+let weatherpagetemp = document.querySelector('.panel_temp p:nth-child(2)');
+let weatherpageimg = document.querySelector('.panel_temp img');
+
+let weatherpagewind = document.querySelector('.panel_wind div:first-child p:nth-child(2)');
+let weatherpagehumidity = document.querySelector('.panel_wind div:nth-child(2) p:nth-child(2)');
+let weatherpageuv = document.querySelector('.panel_wind div:nth-child(3) p:nth-child(2)');
+
 
 
 // FETCH
@@ -35,13 +47,15 @@ async function getLocationData(){;
         });
         const data = await response.json();
         console.log('data: ', data);
+        //return data as object here? 
         displayInfoCard(data);
 
+        displayWeatherPage(data)
     }  catch (error) {
        console.error("Error:", error);
    }
 }
-//does this function return data? 
+
 
 
 function displayInfoCard(data){
@@ -51,6 +65,35 @@ function displayInfoCard(data){
     infocardtemp.textContent = `${data.current.temp_c}\xB0c`;
     infocardimg.setAttribute('src', data.current.condition.icon);
 }
+
+// infocard.addEventListener('click', displayWeatherPage);
+
+function displayWeatherPage(data){
+    weatherpagelocation.textContent = `${data.location.name}, ${data.location.country}`;
+    weatherpagedescription.textContent = data.current.condition.text;
+    weatherpagetemp.textContent = `${data.current.temp_c}\xB0c`;
+    weatherpageimg.setAttribute('src', data.current.condition.icon);
+
+    weatherpagewind.textContent = `${data.current.wind_kph} km/h`;
+    weatherpagehumidity.textContent = `${data.current.humidity}\%`;
+    weatherpageuv.textContent = data.current.uv ;
+}
+
+
+
+// Temp: data.current.temp_c
+// Desc: data.current.condition.text
+
+
+// Wind: data.current.wind_kph
+// Humidity: data.current.humidity
+// UV: data.current.uv
+
+
+
+
+
+
 
 
 

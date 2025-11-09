@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
 }
 
 @font-face {
@@ -22,6 +23,17 @@
     --medpink:#ED86FE;
     --lightpink: #F2BBFF;
     --lightpeach: #fda9c9;
+    --medpurple: #865EFE;
+
+
+/* Black View */
+    --blackviewbg: #1F1F1F;
+    --blackviewmedgrey: #29292B;
+    --blackviewdarkgrey: #272727;
+--gradient3: linear-gradient(203deg, rgba(168,71,232,1) 1%, rgba(207,102,211,1) 70%, rgba(228,150,172,1) 97%);
+
+
+
     --pinktopurpgradient: linear-gradient(143deg, rgba(204,169,226,1) 0%, rgba(227,159,209,0.7637648809523809) 46%, rgba(253,147,190,1) 100%);
     --gradient2: linear-gradient(143deg, rgba(225,58,255,1) 0%, rgba(237,134,254,1) 46%, rgba(242,187,255,1) 100%);
 
@@ -34,11 +46,13 @@
 background: rgb(204,169,226);
 background: linear-gradient(143deg, rgba(204,169,226,1) 0%, rgba(227,159,209,0.7637648809523809) 46%, rgba(253,147,190,1) 100%); */
 
+
 body{
     font-family: 'Gilroy Light';
     /* background: var(--pinktopurpgradient); */
     height: 100vh;
     display: flex;
+    flex: 1 0 auto;
     background: rgb(244,255,255);
 background: linear-gradient(161deg, rgba(244,255,255,1) 1%, rgba(176,225,252,0.7245491946778712) 100%);
 }
@@ -58,7 +72,6 @@ section{
     align-items: center;
 
     box-shadow: var(--stripe);
-   
     outline: solid 2px darkslateblue;
 }
 
@@ -165,6 +178,7 @@ input[type="search"]{
     width: 100%;
     font-size: 18px;
     caret-color:  var(--darkpink);
+    font-family: inherit;
 }
 
 input:focus-visible,
@@ -204,14 +218,21 @@ input::placeholder{
 }
 
 .info_card{
-
     background: rgb(225,58,255);
-    background: linear-gradient(96deg, rgba(225,58,255,1) 0%, rgba(237,134,254,1) 85%, rgba(242,187,255,1) 100%);
+    background: linear-gradient(96deg, rgba(225,58,255,1) 0%, rgba(237,134,254,1) 50%, rgba(242,187,255,1) 100%);
+
+    /* background: linear-gradient(203deg, rgba(168,71,232,1) 1%, rgba(207,102,211,1) 70%, rgba(228,150,172,1) 97%); */
+
     height: 105px;
     padding: 10px;
     margin: 10px 20px;
     width: 300px;
-    border-radius: 20px;
+    border-radius: 11% 11% 11% 11% / 30% 30% 32% 32%;
+
+
+
+
+
     display: flex;
     cursor: pointer;
     transition: background 0.5s ease;
@@ -222,6 +243,8 @@ input::placeholder{
 .info_card:hover{
     background-position:100px;  
     /* border: solid 1px var(--darkpink); */
+  
+
 }
 
 .info_card_left{
@@ -261,8 +284,8 @@ input::placeholder{
     position: absolute;
     bottom: -10px;
     transform: translatey(0px);
-  -webkit-animation: float 6s ease-in-out infinite;
-          animation: float 6s ease-in-out infinite;
+  -webkit-animation: float 35 ease-in-out infinite;
+          animation: float 5s ease-in-out infinite;
 }
 
 
@@ -272,6 +295,224 @@ input::placeholder{
     color:#fffc;
    margin-top:auto;
 }
+/* ---------------- */
+
+
+.weather_main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+.weather_main header{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+   
+    width: 100%;
+    align-items: center;
+}
+
+.back_btn{
+    height: 30px;
+    width: 30px;
+    align-self: flex-start;
+    background: none;
+    border: solid 1px #fffc;
+    color: #fffc;
+    filter: brightness(0.7);
+    padding-bottom: 2px;
+    transition: 0.2s;
+}
+
+.back_btn img{
+    width: 40%;
+    transform: scaleX(-1);
+}
+.back_btn:hover{
+    filter: brightness(1);
+    cursor: pointer;
+}
+
+.weather_main header h3{
+    font-family: 'Gilroy Extra Bold';
+    font-size: 25px;
+    margin-top: -30px;
+}
+
+.weather_main header h3:before{
+    content:'';
+    display:block; 
+}
+
+.weather_main header p{
+    font-size: 12px;
+    color: #fffc;
+}
+
+
+
+
+.panel_temp{
+    /* border: solid 2px cyan; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 30px; */
+}
+
+/* panel_temp description */
+.panel_temp p:nth-child(1){
+    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Light';
+    font-size: 18px;
+}
+
+/* panel_temp temp */
+.panel_temp p:nth-child(2){
+    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Light';
+    font-size: 90px;
+    margin-bottom: -50px;
+    opacity: 01;
+}
+
+.panel_temp img {
+    text-shadow: 5px;
+    filter: drop-shadow(0 0 1rem white);
+}
+
+
+
+.panel_wind{
+    background: white;
+    width: 100%;
+    border-radius: 11%/30%;
+    height: 100px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-evenly;
+    padding: 5px 20px;
+    align-items: baseline;
+}
+.panel_wind div{
+    width: 33%;
+    height: 80px;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel_wind img{
+    width: 35%;
+}
+
+
+
+/* panel_wind speed */
+.panel_wind p:nth-child(2){
+    font-family: 'Gilroy Extra Bold';
+    /* font-family: 'Gilroy Light'; */
+    font-size: 13px;
+    color:#363636;
+    padding-top: 3px;
+}
+
+/* panel_temp wind label */
+.panel_wind p:nth-child(3){
+    font-family: 'Gilroy Extra Bold';
+    font-family: 'Gilroy Light';
+    font-size: 13px;
+    color: rgb(145, 142, 142);
+    padding-top: 3px;
+}
+
+
+
+
+
+
+
+
+
+.forecast_nav{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+
+
+
+/* Forecast panel */
+.panel_forecast{
+   
+    color: white;
+    width: 95%;
+}
+
+.forecast_nav h4{
+    font-family: 'Gilroy Extra Bold';
+}
+
+.forecast_nav a{
+    color: var(--medpink);
+    font-size: 12px;
+    transition: 0.4s;
+}
+
+.forecast_nav a:hover{
+    color: var(--lightpeach);
+}
+
+.hourly_forecast{
+    height: 80px;
+ 
+    width: 120%;
+    color:grey;
+    display:flex;
+    gap:5px;
+    overflow-x: scroll;
+    justify-content: space-between;
+}
+
+.hourly_forecast div{
+    background: white;
+    border-radius: 20px;
+    height: 100%;
+    width: 60px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.hourly_forecast div:nth-child(3){
+    background: linear-gradient(203deg, rgba(168,71,232,1) 1%, rgba(207,102,211,1) 70%, rgba(228,150,172,1) 97%);
+    color: white;
+}
+
+.hourly_forecast div:nth-child(3) p:nth-child(3){
+    color: white;
+}
+
+.hourly_forecast p{
+    font-size: 10px;
+}
+
+.hourly_forecast img{
+    width: 60%;
+}
+
+.hourly_forecast div p:nth-child(3){
+    font-family: 'Gilroy Extra Bold';
+    font-size: 14px;
+    color: #363636;
+}
+
+
+
+
+
 
 
 
@@ -296,6 +537,27 @@ input::placeholder{
     }
   }
  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
